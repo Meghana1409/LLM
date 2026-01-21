@@ -1,5 +1,3 @@
 query--> text splitter--> embeddings--> llm --> user
 
-
-
-langchain builds pipe line btween these components 
+langchain builds pipe line btween these components .it is model agnosic framework like if we want to change model then we need to change minimal code only . it also provide chain concept where ones output is automatically provided as input to other componenets. 
