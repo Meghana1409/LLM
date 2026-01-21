@@ -1,0 +1,5 @@
+query--> text splitter--> embeddings--> llm --> user
+
+
+
+langchain builds pipe line btween these components 
