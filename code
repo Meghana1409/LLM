@@ -1,7 +1,49 @@
-from langchain.HuggingFace import EndPointHuggingFace,ChatHuggingFace
+###################  BASIC ####################################################
 
+from langchain.HuggingFace import EndPointHuggingFace,ChatHuggingFace
 
 llm=EndPointHuggingFace(repo_id="model_name",task="text-generation")
 model=ChatHuggingFace(llm=llm)
 
-model.invoke("what is the capital of india?")
+result=model.invoke("what is the capital of india?")
+print(result.content)
+
+
+
+################################### USING MESSAGES ############################################
+
+from langchain.HuggingFace import EndPointHuggingFace,ChatHuggingFace
+from langchain.schema.messages import HumanMessage,SystemMessage,AIMessage
+
+messages=[
+SystemMessage("You are python tuter"),
+HumanMessage("why python is interpreteted language?")
+]
+
+llm=EndPointHuggingFace(repo_id="model_name",task="text-generation")
+model=ChatHuggingFace(llm=llm)
+
+result=model.invoke(messages)
+print(result.content)
+
+
+###################  USING PROMPTS ####################################################
+
+from langchain.HuggingFace import EndPointHuggingFace,ChatHuggingFace
+from lagchain.prompt import PromptTemplate
+
+llm=EndPointHuggingFace(repo_id="model_name",task="text-generation")
+model=ChatHuggingFace(llm=llm)
+
+template=PromptTemplate(
+template="what is the capital of {country}",
+input_variables=['country']
+)
+prompt=template.invoke({'country':"India"})
+
+result=model.invoke(prompt)
+print(result.content)
+
+
+
+
