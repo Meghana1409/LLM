@@ -1,0 +1,7 @@
+from langchain.HuggingFace import EndPointHuggingFace,ChatHuggingFace
+
+
+llm=EndPointHuggingFace(repo_id="model_name",task="text-generation")
+model=ChatHuggingFace(llm=llm)
+
+model.invoke("what is the capital of india?")
