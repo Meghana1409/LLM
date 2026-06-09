@@ -1,0 +1,52 @@
+place instructions at the beginning of the prompt,use some clear separator like "###" to separate the instruction and context.
+
+for example:
+### Instruction ###
+Translate the text below to Spanish:
+Text: "hello!"
+
+effective communication -- the more direct, the more effective the message gets across.
+example : not this--> Explain the concept prompt engineering. Keep the explanation short, only a few sentences, and don't be too descriptive.
+          use this --> Use 2-3 sentences to explain the concept of prompt engineering to a high school student.
+
+aplications:
+1) Code Generation:
+    Prompt:
+      """
+        Table departments, columns = [DepartmentId, DepartmentName]
+        Table students, columns = [DepartmentId, StudentId, StudentName]
+        Create a MySQL query for all students in the Computer Science Department
+      """
+    Output:
+      SELECT StudentId, StudentName 
+      FROM students 
+      WHERE DepartmentId IN (SELECT DepartmentId FROM departments WHERE DepartmentName = 'Computer Science');
+
+2)Text Summarization
+3)Information Extraction
+4)Question Answering
+5)Text Classification
+6)Conversation
+7)Reasoning
+
+Prompting Techniques:
+1)Zero-Shot Prompting:
+    Zero-shot prompting means that the prompt used to interact with the model won't contain examples or demonstrations.
+    The zero-shot prompt directly instructs the model to perform a task without any additional examples to steer it.
+
+2)Few-Shot Prompting:
+    Few-shot prompting can be used as a technique to enable in-context learning where we provide demonstrations in the prompt to steer the model to better performance. 
+    few-shot prompting is not enough to get reliable responses for this type of reasoning problem.
+
+3) Chain-of-Thought Prompting:
+    chain-of-thought (CoT) prompting enables complex reasoning capabilities through intermediate reasoning steps.
+    You can combine it with few-shot prompting to get better results on more complex tasks that require reasoning before responding.
+    A) Zero-shot COT Prompting:
+        Prompt + Let's think step by step.
+    B) Automatic Chain-of-Thought (Auto-CoT):
+        Auto-CoT consists of two main stages:
+          Stage 1): question clustering: partition questions of a given dataset into a few clusters
+          Stage 2): demonstration sampling: select a representative question from each cluster and generate its reasoning chain using Zero-Shot-CoT with simple heuristics
+          The simple heuristics could be length of questions (e.g., 60 tokens) and number of steps in rationale (e.g., 5 reasoning steps). This encourages the model to use simple and
+          accurate demonstrations.
+    
